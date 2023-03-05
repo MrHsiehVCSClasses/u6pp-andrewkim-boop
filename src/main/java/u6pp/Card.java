@@ -30,5 +30,55 @@ public class Card {
         DRAW_2, REVERSE, SKIP, WILD, WILD_DRAW_4};
 
     // start you code here
-
+    String myColor;
+    String myValue;
+    //initializer for card
+    public Card(String color, String value){
+        myColor = color;
+        myValue = value;
+    }
+    //basic getters and setters for card color and value
+    public void setColor(String color){
+        myColor = color;
+    }
+    public void setValue(String value){
+        myValue = value;
+    }
+    public String getColor(){
+        return myColor;
+    }
+    public String getValue(){
+        return myValue;
+    }
+    //returns true if the card is wild and the parameter is one of the colors: red, green, blue, yellow
+    public boolean trySetColor(String color){
+        if(color == null){
+            return false;
+        }
+        if(this.getColor().equals(WILD)){
+            if(color.equals(RED) || color.equals(YELLOW) || color.equals(GREEN) || color.equals(BLUE)){
+                myColor = color;
+                return true;
+            }
+        }
+        return false;
+    }
+    //returns true if the parameter is a card that can be played on
+    //if the card is the same color or value as the parameter or a wild
+    //also returns false if null
+    public boolean canPlayOn(Card card){
+        if(card == null){
+            return false;
+        }
+        if(this.getColor() == WILD){
+            return true;
+        }
+        if(this.getColor() == card.getColor() || this.getValue() == card.getValue()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
 }
